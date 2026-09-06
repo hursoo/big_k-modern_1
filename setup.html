@@ -1,0 +1,150 @@
+<title>02강 환경 세팅 한 장</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#EFF3F2; --panel:#FFFFFF; --ink:#16262A; --muted:#5D7176; --faint:#8A9C9F;
+    --line:#DBE4E2; --line-strong:#C3D0CE; --accent:#0E6B64; --accent-soft:#DCEDEA; --warn:#A4382A;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    --ground:#0E1416; --panel:#171F21; --ink:#E9F0EE; --muted:#A2B4B7; --faint:#7C8E91;
+    --line:#293638; --line-strong:#3B4B4E; --accent:#4CBCAE; --accent-soft:#14322E; --warn:#EC8A70;
+  }}
+  :root[data-theme="dark"]{
+    --ground:#0E1416; --panel:#171F21; --ink:#E9F0EE; --muted:#A2B4B7; --faint:#7C8E91;
+    --line:#293638; --line-strong:#3B4B4E; --accent:#4CBCAE; --accent-soft:#14322E; --warn:#EC8A70;
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink); line-height:1.5;
+    font-family:"IBM Plex Sans KR", system-ui, -apple-system, "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{max-width:1120px; margin:0 auto; padding:26px 22px 40px}
+
+  header{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px}
+  h1{font-family:"Gowun Batang",serif; font-size:clamp(22px,3vw,30px); margin:0; letter-spacing:-.015em}
+  header .sub{color:var(--muted); font-size:15px}
+  .link{
+    margin:14px 0 22px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    background:var(--accent); color:#fff; text-decoration:none; border-radius:9px; padding:11px 16px;
+  }
+  .link .lbl{font-size:11.5px; font-weight:600; letter-spacing:.14em; background:rgba(255,255,255,.2); border-radius:5px; padding:3px 9px}
+  .link b{font-family:"IBM Plex Mono",monospace; font-size:17px; font-weight:500}
+  .link .go{margin-left:auto; font-size:13.5px; opacity:.9}
+  .link:hover{filter:brightness(1.08)}
+  .link:focus-visible{outline:3px solid var(--ink); outline-offset:2px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; align-items:start}
+  .box{background:var(--panel); border:1px solid var(--line); border-radius:11px; padding:16px 17px 17px}
+  .box h2{
+    margin:0 0 12px; font-size:17px; font-weight:600; display:flex; align-items:center; gap:9px;
+    padding-bottom:11px; border-bottom:1px solid var(--line);
+  }
+  .box h2 .k{
+    font-family:"IBM Plex Mono",monospace; font-size:12.5px; letter-spacing:.1em;
+    background:var(--accent); color:#fff; border-radius:5px; padding:3px 8px;
+  }
+  ol{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px; counter-reset:s}
+  ol li{
+    font-size:15px; padding-left:23px; position:relative; counter-increment:s;
+  }
+  ol li::before{
+    content:counter(s); position:absolute; left:0; top:1px;
+    font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--faint);
+    border:1px solid var(--line-strong); border-radius:50%;
+    width:17px; height:17px; display:grid; place-items:center;
+  }
+  code{
+    font-family:"IBM Plex Mono",monospace; font-size:14px; cursor:copy; user-select:all;
+    background:var(--accent-soft); color:var(--accent); border-radius:4px; padding:1px 6px;
+    transition:.15s; white-space:nowrap;
+  }
+  code:hover{filter:brightness(.95)}
+  code.hit{background:var(--accent); color:#fff}
+  code.hit::after{content:" 복사됨"; font-family:"IBM Plex Sans KR",sans-serif; font-size:11px}
+  em{font-style:normal; color:var(--warn); font-weight:600}
+  .note{
+    margin-top:22px; border-top:1px solid var(--line); padding-top:14px;
+    color:var(--muted); font-size:14px; display:flex; gap:22px; flex-wrap:wrap;
+  }
+  .note b{color:var(--ink)}
+</style>
+
+<div class="page">
+  <header>
+    <h1>『개벽』 분석 작업대 만들기</h1>
+    <span class="sub">빅한근1 · 02강 · 한 번만 해 두면 15주 내내 씁니다</span>
+  </header>
+
+  <a class="link" href="https://github.com/hursoo/big_k-modern_1" target="_blank" rel="noopener">
+    <span class="lbl">코드와 안내</span>
+    <b>github.com/hursoo/big_k-modern_1</b>
+    <span class="go">눌러서 GitHub로 →</span>
+  </a>
+
+  <div class="grid">
+    <section class="box">
+      <h2><span class="k">A</span>코랩 설치</h2>
+      <ol>
+        <li>드라이브 <b>[+ 신규] → 더보기</b> → 맨 아래 <b>연결할 앱 더보기</b></li>
+        <li><code>colab</code> 검색 → <b>Colaboratory</b> → <b>설치</b></li>
+        <li>「설치 중」이 계속 돌면 <em>창을 닫고 새로고침</em> — 이미 깔려 있습니다</li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2><span class="k">B</span>폴더 만들기</h2>
+      <ol>
+        <li>내 드라이브에 새 폴더 <code>big_km_history01</code></li>
+        <li>그 안에 <code>data</code></li>
+        <li>그 안에 <code>result</code> &nbsp;<em>모두 소문자</em></li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2><span class="k">C</span>코드 파일</h2>
+      <ol>
+        <li>GitHub에서 <code>02_1_코랩파이썬.ipynb</code></li>
+        <li>왼쪽 위 <b>Open in Colab</b></li>
+        <li><em>파일 → 드라이브에 사본 저장</em> — 안 하면 실행이 안 됩니다</li>
+        <li>이름에서 <b>「의 사본」</b> 지우기</li>
+        <li><b>Colab Notebooks</b>에 있습니다 → 우클릭 <b>정리 → 이동</b> → 작업 폴더로</li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2><span class="k">D</span>드라이브 연결</h2>
+      <ol>
+        <li>코랩 왼쪽 <b>폴더 아이콘</b> → <b>드라이브 마운트</b></li>
+        <li><b>연결</b> → 계정 선택 → 승인 &nbsp;<em>폴더를 만든 계정으로</em></li>
+        <li>왼쪽에 <code>drive/MyDrive/big_km_history01/</code> 이 보이면 됩니다</li>
+      </ol>
+    </section>
+
+    <section class="box">
+      <h2><span class="k">E</span>확인</h2>
+      <ol>
+        <li>노트북을 위에서부터 실행 → <b>표가 뜹니다</b></li>
+        <li><code>result</code> 에 저장한 파일이 <b>드라이브에 보이면 끝</b></li>
+      </ol>
+    </section>
+  </div>
+
+  <p class="note">
+    <span><b>연두색 글자</b>를 누르면 복사됩니다</span>
+    <span>연결하지 않으면 저장한 것이 <b>코랩을 닫는 순간 사라집니다</b></span>
+    <span>막히면 조교 <b>안범영</b> 선생께 eTL 메시지로</span>
+  </p>
+</div>
+
+<script>
+document.querySelectorAll("code").forEach(c=>{
+  c.title = "눌러서 복사";
+  c.onclick = async () => {
+    try { await navigator.clipboard.writeText(c.textContent.trim()); }
+    catch(e){ const r=document.createRange(); r.selectNodeContents(c);
+      const s=getSelection(); s.removeAllRanges(); s.addRange(r); }
+    c.classList.add("hit"); setTimeout(()=>c.classList.remove("hit"), 1100);
+  };
+});
+</script>
